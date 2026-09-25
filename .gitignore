@@ -1,0 +1,15 @@
+# Java
+*.class
+
+# VS Code
+.vscode/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Build
+target/
+bin/
+out/
