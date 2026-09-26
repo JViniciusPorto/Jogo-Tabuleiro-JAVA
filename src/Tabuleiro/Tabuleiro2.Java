@@ -2,39 +2,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-public class Tabuleiro {
+public class Tabuleiro2 {
 
     private ArrayList<Casa> casas;
 
-    public Tabuleiro() {
+    public Tabuleiro2() {
         casas = new ArrayList<>();
-
         criarCasas();
     }
 
     private void criarCasas() {
-
-        for (int i = 0; i < 40; i++) {
-
-            if (i == 5 || i == 15 || i == 30) {
-                casas.add(new CasaSorte());
-
-            } else if (i == 10 || i == 25 || i == 38) {
-                casas.add(new CasaPerdeRodada());
-
-            } else if (i == 13) {
-                casas.add(new CasaSurpresa());
-
-            } else if (i == 17 || i == 27) {
-                casas.add(new CasaVoltaInicio());
-
-            } else if (i == 20 || i == 35) {
-                casas.add(new CasaMagica());
-
-            } else {
-                casas.add(new CasaNormal());
-            }
+        for (int posicao = 0; posicao < 40; posicao++) {
+            casas.add(criarCasa(posicao));
         }
+    }
+
+    private Casa criarCasa(int posicao) {
+
+        return switch (posicao) {
+            case 5, 15, 30 -> new CasaSorte();
+            case 10, 25, 38 -> new CasaPerdeRodada();
+            case 13 -> new CasaSurpresa();
+            case 17, 27 -> new CasaVoltaInicio();
+            case 20, 35 -> new CasaMagica();
+            default -> new CasaNormal();
+        };
     }
 
     public Casa getCasa(int posicao) {
