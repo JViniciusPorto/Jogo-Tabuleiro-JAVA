@@ -20,6 +20,8 @@ public abstract class Jogador {
         return this.dado1==this.dado2;
     }
 
+    public abstract boolean temSorte();
+
     private void mover(int quantidade){
         this.posicao += quantidade;
     }
@@ -29,7 +31,10 @@ public abstract class Jogador {
         mover(casasParaAndar);
         this.quantidadeDeJogadas += 1;
     }
-
+    public void jogar(int quantidadeDeCasas){
+        mover(quantidadeDeCasas);
+        this.quantidadeDeJogadas += 1;
+    }
     public String getCor(){
         return this.cor;
     }
@@ -48,5 +53,8 @@ public abstract class Jogador {
 
     public int getDado2(){
         return this.dado2;
+    }
+    public void setPosicao(int posicao){
+        this.posicao = posicao;
     }
 }

@@ -14,4 +14,8 @@ public class JogadorSortudo extends Jogador{
         }while(soma<7);
         return soma;
     }
+    @Override
+    public boolean temSorte() {
+        return true;
+    }
 }
