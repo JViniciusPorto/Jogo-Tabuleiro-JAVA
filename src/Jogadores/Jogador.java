@@ -20,8 +20,6 @@ public abstract class Jogador {
         return this.dado1==this.dado2;
     }
 
-    public abstract boolean temSorte();
-
     private void mover(int quantidade){
         this.posicao += quantidade;
     }
