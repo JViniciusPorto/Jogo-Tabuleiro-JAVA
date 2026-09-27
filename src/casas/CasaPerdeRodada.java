@@ -1,6 +1,7 @@
 package casas;
 import java.util.List;
 import jogadores.Jogador;
+
 public class CasaPerdeRodada extends Casa {
     
     

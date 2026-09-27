@@ -2,7 +2,7 @@ package casas;
 import java.util.List;
 import jogadores.Jogador;
 
-public abstract class Casa{
+public class Casa{
     protected int posicao;
     
     public Casa(int posicao){
@@ -13,7 +13,8 @@ public abstract class Casa{
         return this.posicao;
     }
     
-    public abstract Jogador executarEfeito(Jogador jogadorAtual, List<Jogador> todosJogadores);
-
-     
+    public Jogador executarEfeito(Jogador jogadorAtual, List<Jogador> todosJogadores){
+        
+        return jogadorAtual;
+    }
 }
