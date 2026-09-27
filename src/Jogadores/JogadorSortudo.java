@@ -4,6 +4,11 @@ public class JogadorSortudo extends Jogador{
     public JogadorSortudo(String cor){
         super(cor);
     }
+
+    public JogadorSortudo(Jogador jogador){
+        super(jogador);
+    }
+
     @Override
     public int jogarDados() {
         int soma;
@@ -13,5 +18,10 @@ public class JogadorSortudo extends Jogador{
             soma = this.dado1 + this.dado2;
         }while(soma<7);
         return soma;
+    }
+
+    @Override
+    public boolean temSorte() {
+        return true;
     }
 }
