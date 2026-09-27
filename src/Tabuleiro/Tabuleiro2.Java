@@ -1,6 +1,15 @@
+package tabuleiro;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+import casas.Casa;
+import casas.CasaMagica;
+import casas.CasaNormal;
+import casas.CasaPerdeRodada;
+import casas.CasaSorte;
+import casas.CasaSurpresa;
+
+
 
 public class Tabuleiro2 {
 
@@ -25,7 +34,7 @@ public class Tabuleiro2 {
             case 13 -> new CasaSurpresa();
             case 17, 27 -> new CasaVoltaInicio();
             case 20, 35 -> new CasaMagica();
-            default -> new CasaNormal();
+            default -> new Casa();
         };
     }
 
