@@ -10,7 +10,7 @@ public abstract class Casa{
         return this.posicao;
     }
     
-    public abstract void executarEfeito(Jogador jogador);
+    public abstract Jogador executarEfeito(Jogador jogadorAtual, List<Jogador> todosJogadores);
 
      
 }

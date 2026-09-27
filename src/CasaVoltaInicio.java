@@ -1,3 +1,5 @@
+import java.util.List;
+
 import Jogadores.Jogador;
 public class CasaVoltaInicio extends Casa {
     
@@ -8,8 +10,10 @@ public class CasaVoltaInicio extends Casa {
     }
 
     @Override 
-    public void executarEfeito(Jogador jogador){
+    public Jogador executarEfeito(Jogador jogador, List<Jogador> todosJogadores){
 
+
+        return jogador;
     }
 
     public void setJogadorEscolhido(int jogadorEscolhido){

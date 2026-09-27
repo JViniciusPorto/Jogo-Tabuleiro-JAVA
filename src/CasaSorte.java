@@ -1,3 +1,5 @@
+import java.util.List;
+
 import Jogadores.Jogador;
 public class CasaSorte extends Casa {
     
@@ -6,10 +8,12 @@ public class CasaSorte extends Casa {
     }
     
     @Override 
-    public void executarEfeito(Jogador jogador){
+    public Jogador executarEfeito(Jogador jogador, List<Jogador> todosJogadores){
         if(jogador.temSorte()){
             jogador.setPosicao(jogador.getPosicao() + 3);
         }
+        
+        return jogador;
     }
 
 
