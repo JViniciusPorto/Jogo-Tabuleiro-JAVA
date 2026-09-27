@@ -1,6 +1,11 @@
+package casas;
 import java.util.List;
 import java.util.Random;
-import Jogadores.Jogador;
+import jogadores.Jogador;
+import jogadores.JogadorAzarado;
+import jogadores.JogadorNormal;
+import jogadores.JogadorSortudo;
+
 public class CasaSupresa extends Casa{
     private int carta;
     private Random sorteio;
@@ -13,15 +18,15 @@ public class CasaSupresa extends Casa{
     @Override 
     public Jogador executarEfeito(Jogador jogador, List<Jogador> todosJogadores){
         carta = sorteio.nextInt(3);
-        Switch(carta){
+        switch(carta){
             case 0:
-                return new jogadorNormal(jogador);
+                return new JogadorNormal(jogador);
                 
             case 1:
-                return new jogadorSortudo(jogador);
+                return new JogadorSortudo(jogador);
 
             default: 
-                return new jogadorAzarado(jogador);
+                return new JogadorAzarado(jogador);
         }
         
     }

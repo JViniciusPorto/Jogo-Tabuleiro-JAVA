@@ -1,4 +1,7 @@
-import Jogadores.Jogador;
+package casas;
+import java.util.List;
+import jogadores.Jogador;
+
 public abstract class Casa{
     protected int posicao;
     

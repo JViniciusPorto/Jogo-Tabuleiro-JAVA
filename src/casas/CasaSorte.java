@@ -1,6 +1,6 @@
+package casas;
 import java.util.List;
-
-import Jogadores.Jogador;
+import jogadores.Jogador;
 public class CasaSorte extends Casa {
     
     public CasaSorte(int posicao){
