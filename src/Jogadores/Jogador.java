@@ -30,7 +30,7 @@ public abstract class Jogador {
         this.quantidadeDeJogadas += 1;
     }
     public void jogar(int quantidadeDeCasas){
-        mover(quantidadeDeCasas);
+        this.posicao = quantidadeDeCasas;
         this.quantidadeDeJogadas += 1;
     }
     public String getCor(){
