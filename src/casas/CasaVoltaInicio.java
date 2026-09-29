@@ -1,7 +1,7 @@
 package casas;
 import java.util.List;
 import java.util.Scanner;
-import jogadores.Jogador;
+import jogadores.*;
 
 public class CasaVoltaInicio extends Casa {
     
