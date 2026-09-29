@@ -14,7 +14,7 @@ public class CasaPerdeRodada extends Casa {
     public Jogador executarEfeito(Jogador jogador, List<Jogador> todosJogadores){
         if(jogador.getIsPerdeProximaRodada() == false){
             jogador.setIsPerdeProximaRodada(true);
-            System.out.println(jogador.getCor() )
+            System.out.println(jogador.getCor() + " caiu na Casa Perde Rodada e ficará fora da próxima rodada!");
         }
         return jogador;
     }

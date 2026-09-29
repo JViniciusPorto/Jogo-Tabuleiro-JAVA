@@ -1,15 +1,14 @@
 package jogo;
 
+import casas.Casa;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-
 import jogadores.Jogador;
 import jogadores.JogadorAzarado;
 import jogadores.JogadorNormal;
 import jogadores.JogadorSortudo;
-import casas.Casa;
 import tabuleiro.Tabuleiro;
 
 public class Jogo {
@@ -95,7 +94,7 @@ public class Jogo {
         List<Integer> tipos = new ArrayList<>();
 
         for (int i = 0; i < quantidade; i++) {
-            System.out.println("Escolha o tipo do jogador " + CORES_DISPONIVEIS[i] + ":");
+            System.out.println("Escolha o tipo do jogador [" + CORES_DISPONIVEIS[i] + "]:");
             System.out.println("1 - Normal");
             System.out.println("2 - Sortudo");
             System.out.println("3 - Azarado");
@@ -115,7 +114,7 @@ public class Jogo {
 
     private void corrigirTipoRepetido(List<Integer> tipos) {
         while (tipos.stream().distinct().count() == 1) {
-            System.out.println("Escolha o novo tipo do jogador " + CORES_DISPONIVEIS[0] + ":");
+            System.out.println("Escolha o novo tipo do jogador [" + CORES_DISPONIVEIS[0] + "]:");
             System.out.println("1 - Normal");
             System.out.println("2 - Sortudo");
             System.out.println("3 - Azarado");
@@ -146,7 +145,7 @@ public class Jogo {
                 continue;
             }
 
-            System.out.println("Vez do jogador " + jogadorAtual.getCor() + ". Jogar dados? [pressione Enter]");
+            System.out.println("\nVez do jogador " + jogadorAtual.getCor() + ". Jogar dados? [pressione Enter]");
             scanner.nextLine();
 
             boolean dadosIguaisNestaJogada = false;
@@ -225,9 +224,5 @@ public class Jogo {
 
     public List<Jogador> getJogadores() {
         return Collections.unmodifiableList(jogadores);
-    }
-
-    public static void main(String[] args) {
-        new Jogo().iniciar();
     }
 }

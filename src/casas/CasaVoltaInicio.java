@@ -19,7 +19,7 @@ public class CasaVoltaInicio extends Casa {
     private void escolherJogadorInicio(Jogador jogador,List<Jogador> todosJogadores){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("EScolha um jogador para voltar para o inicio");
+        System.out.println("Escolha um jogador para voltar para o inicio");
 
          for (int i = 0; i < todosJogadores.size(); i++) {
             Jogador j = todosJogadores.get(i);
@@ -32,7 +32,7 @@ public class CasaVoltaInicio extends Casa {
         int escolha;
 
         do{
-            System.out.print("Digite o número do competidor: ");
+            System.out.print("Digite a posição em que ele está agora: ");
             escolha = scanner.nextInt();
 
              if (escolha < 1 || escolha > todosJogadores.size()) {
