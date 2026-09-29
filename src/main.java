@@ -1,5 +1,5 @@
 import jogo.*;
 
 public static void main(String[] args) {
-        new Jogo().iniciar();
+        new Jogo2().iniciarJogo();
 }

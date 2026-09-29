@@ -7,7 +7,6 @@ import tabuleiro.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collections;
 
 public class Jogo2 {
     private List<Jogador> jogadores;
@@ -38,7 +37,7 @@ public class Jogo2 {
             jogarPartida();
 
             System.out.println("Voltar para início? [pressione Enter]");
-            scanner.nextLine();
+            teclado.nextLine();
 
         }
     }
@@ -148,10 +147,9 @@ public class Jogo2 {
             }
 
             System.out.println("\nVez do jogador " + jogadorAtual.getCor() + ". Jogar dados? [pressione Enter]");
-            scanner.nextLine();
+            teclado.nextLine();
 
-
-            if (modoDebug) {
+            if (this.isModoDebug) {
                 System.out.println("[DEBUG] Digite a casa para onde o jogador deve ir (0 a 40):");
                 int posicaoEscolhida = lerInteiroEntre(0,40);
                 jogadorAtual.jogar(posicaoEscolhida);
@@ -184,11 +182,7 @@ public class Jogo2 {
         }
     }
     private int proximoIndice(int indiceAtual) {
-        indiceAtual += 1;
-        if(indiceAtual>=jogadores.size()){
-            indiceAtual = 0;
-        }
-        return indiceAtual;
+        return (indiceAtual + 1) % jogadores.size();
     }
 
     private void exibirPosicoes() {
@@ -205,7 +199,7 @@ public class Jogo2 {
     private void exibirResultadosFinais() {
         System.out.println("---- Resultado final ----");
         for (Jogador j : jogadores){
-            System.out.printf("%d  - Posição: %d Jogadas: %d\n",j,getCor(),j.getPosicao(),j.getQuantidadeDeJogadas());
+            System.out.printf("%d  - Posição: %d Jogadas: %d\n",j.getCor(),j.getPosicao(),j.getQuantidadeDeJogadas());
         }
     }
 }
