@@ -1,0 +1,21 @@
+package casas;
+import java.util.List;
+import jogadores.*;
+
+public class CasaPerdeRodada extends Casa {
+    
+    
+
+    public CasaPerdeRodada(int posicao){
+        super(posicao);
+    }
+    
+    @Override
+    public Jogador executarEfeito(Jogador jogador, List<Jogador> todosJogadores){
+        if(jogador.getIsPerdeProximaRodada() == false){
+            jogador.setIsPerdeProximaRodada(true);
+            System.out.println(jogador.getCor() + " caiu na Casa Perde Rodada e ficará fora da próxima rodada!");
+        }
+        return jogador;
+    }
+}

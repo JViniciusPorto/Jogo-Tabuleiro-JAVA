@@ -1,0 +1,22 @@
+package jogadores;
+
+public class JogadorNormal extends Jogador{
+    public JogadorNormal(String cor){
+        super(cor);
+    }
+
+    public JogadorNormal(Jogador Jogador){
+        super(Jogador);
+    }
+
+    @Override
+    public int jogarDados() {
+        this.dado1 = rolardados.nextInt(6)+1;
+        this.dado2 = rolardados.nextInt(6)+1;
+        return this.dado1 + this.dado2;
+    }
+    @Override
+    public boolean temSorte() {
+        return true;
+    }
+}
