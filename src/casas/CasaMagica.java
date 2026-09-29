@@ -1,6 +1,6 @@
 package casas;
 import java.util.List;
-import jogadores.Jogador;
+import jogadores.*;
 
 public class CasaMagica extends Casa {
 
@@ -18,6 +18,10 @@ public class CasaMagica extends Casa {
 
         jogador.setPosicao(maisAtras.getPosicao());
         maisAtras.setPosicao(posicaoJogador);
+        System.out.println(jogador.getCor() + " caiu na Casa Mágica e trocou de posição com "+ maisAtras.getCor() + "!");
+        }
+        else{
+            System.out.println(jogador.getCor() + " caiu na Casa Mágica, mas já era o último - nada mudou!");
         }
 
         return jogador;

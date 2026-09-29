@@ -1,6 +1,6 @@
 package casas;
 import java.util.List;
-import jogadores.Jogador;
+import jogadores.*;
 
 public class Casa{
     protected int posicao;

@@ -14,6 +14,7 @@ public class CasaPerdeRodada extends Casa {
     public Jogador executarEfeito(Jogador jogador, List<Jogador> todosJogadores){
         if(jogador.getIsPerdeProximaRodada() == false){
             jogador.setIsPerdeProximaRodada(true);
+            System.out.println(jogador.getCor() )
         }
         return jogador;
     }
