@@ -71,7 +71,7 @@ public class Jogo {
             }
             entrada = teclado.nextInt();
             if(entrada<min || entrada>max){
-                System.out.println("Digite um inteiro entre "+min+" e "+max+"1");
+                System.out.println("Digite um inteiro entre "+min+" e "+max+"!");
                 System.out.println("Digite novamente");
                 continue;
             }
