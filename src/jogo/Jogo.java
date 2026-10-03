@@ -1,85 +1,85 @@
 package jogo;
+//importa todas as classes que existem nos pacotes
+import casas.*;
+import jogadores.*;
+import tabuleiro.*;
 
-import casas.Casa;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
-import jogadores.Jogador;
-import jogadores.JogadorAzarado;
-import jogadores.JogadorNormal;
-import jogadores.JogadorSortudo;
-import tabuleiro.Tabuleiro;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Jogo {
-
-    private static final String[] CORES_DISPONIVEIS =
-            { "Azul", "Verde", "Amarelo", "Branco", "Vermelho", "Preto" };
-
-    private final List<Jogador> jogadores;
-    private final Tabuleiro tabuleiro;
-    private final Scanner scanner;
-    private boolean modoDebug;
+    private List<Jogador> jogadores;
+    private Scanner teclado;
+    private Tabuleiro tabuleiro;
+    private final String[] CORES_DISPONIVEIS = {
+            "Vermelho", "Azul", "Amarelo", "Verde", "Branco", "Preto"
+    };
     private int quantidadeDeJogadores;
-    private boolean continuarJogando = true;
-    public Jogo() {
-        this.jogadores = new ArrayList<>();
-        this.tabuleiro = new Tabuleiro();
-        this.scanner = new Scanner(System.in);
+    private boolean isModoDebug = false;
+    private boolean isJogoEncerrado = false;
+    public Jogo(){
+        jogadores = new ArrayList<>();
+        teclado = new Scanner(System.in);
+        tabuleiro = new Tabuleiro();
+        
     }
-
-    // ---------------- Menu / início ----------------
-
-    public void iniciar() {
-        //esse while nunca acaba
-        while (this.continuarJogando) {
+    public void iniciarJogo(){
+        while(true){
             escolherModo();
-            if(this.continuarJogando==false){
+            if(this.isJogoEncerrado){
                 break;
             }
-            escolherQuantidadeDeJogadores();
-            jogadores.clear();
+            
+            escolherQuantidadeJogadores();
+            this.jogadores.clear();
             criarJogadores();
             jogarPartida();
 
             System.out.println("Voltar para início? [pressione Enter]");
-            scanner.nextLine();
+            teclado.nextLine();
+
         }
     }
 
-    private void escolherModo() {
-        System.out.println("Escolha o modo de jogo:");
+    private void escolherModo(){
+        System.out.println("Escolha o modo de jogo");
         System.out.println("1 - Normal");
-        System.out.println("2 - Debug");
+        System.out.println("2 - Modo Debug");
         System.out.println("3 - Sair");
-        int opcao = lerInteiroEntre(1, 3);
-        this.modoDebug = (opcao == 2);
-        if(opcao==3){
-            this.continuarJogando = false;
+        int opcao=lerInteiroEntre(1, 3);
+        if(opcao==2){
+            this.isModoDebug = true;
+        }else if(opcao==3){
+            this.isJogoEncerrado = true;
         }
     }
 
-    private void escolherQuantidadeDeJogadores() {
-        System.out.println("Quantos jogadores vão participar? (2 a 6)");
+    private void escolherQuantidadeJogadores(){
+        System.out.println("Quantos jogadores vão participar?");
         this.quantidadeDeJogadores = lerInteiroEntre(2, 6);
     }
 
-    private int lerInteiroEntre(int min, int max) {
-        while (true) {
-            String entrada = scanner.nextLine().trim();
-            try {
-                int valor = Integer.parseInt(entrada);
-                if (valor >= min && valor <= max) {
-                    return valor;
-                }
-            } catch (NumberFormatException ignorado) {
-                // cai no println abaixo
+    private int lerInteiroEntre(int min, int max){
+        int entrada;
+        while(true){
+            if(!teclado.hasNextInt()){
+                System.out.println("Digite um inteiro!");
+                teclado.nextLine();
+                System.out.println("Digite novamente!");
+                continue;
             }
-            System.out.println("Valor inválido. Digite um número entre " + min + " e " + max + ":");
-        }
-    }
+            entrada = teclado.nextInt();
+            if(entrada<min || entrada>max){
+                System.out.println("Digite um inteiro entre "+min+" e "+max+"1");
+                System.out.println("Digite novamente");
+                continue;
+            }
+            break;
 
-    // ---------------- Criação dos jogadores ----------------
+        }
+        return entrada;
+    }
 
     private void criarJogadores() {
         List<Integer> tipos = escolherTipos(quantidadeDeJogadores);
@@ -99,7 +99,7 @@ public class Jogo {
             System.out.println("2 - Sortudo");
             System.out.println("3 - Azarado");
             int opcao = lerInteiroEntre(1, 3);
-            tipos.add(opcao - 1); // 0=Normal, 1=Sortudo, 2=Azarado
+            tipos.add(opcao - 1);
         }
 
         boolean somenteUmTipo = tipos.stream().distinct().count() == 1;
@@ -111,8 +111,11 @@ public class Jogo {
 
         return tipos;
     }
-
-    private void corrigirTipoRepetido(List<Integer> tipos) {
+    
+    private void corrigirTipoRepetido(List<Integer> tipos){
+        //tipos.stream() retorna um objeto da lista,
+        //tipos.stream().distinct() retorna só os objetos diferentes
+        //tipos.stream().distinct().count() conta quantos objetos são diferentes
         while (tipos.stream().distinct().count() == 1) {
             System.out.println("Escolha o novo tipo do jogador [" + CORES_DISPONIVEIS[0] + "]:");
             System.out.println("1 - Normal");
@@ -131,8 +134,6 @@ public class Jogo {
         };
     }
 
-    // ---------------- Loop principal ----------------
-
     private void jogarPartida() {
         int indiceAtual = 0;
 
@@ -146,31 +147,27 @@ public class Jogo {
             }
 
             System.out.println("\nVez do jogador " + jogadorAtual.getCor() + ". Jogar dados? [pressione Enter]");
-            scanner.nextLine();
+            teclado.nextLine();
 
-            boolean dadosIguaisNestaJogada = false;
-
-            if (modoDebug) {
-                int posicaoEscolhida = perguntarPosicaoDebug();
-                jogadorAtual.jogar(posicaoEscolhida); // jogar(int) fixa a posição direto
+            if (this.isModoDebug) {
+                System.out.println("[DEBUG] Digite a casa para onde o jogador deve ir (0 a 40):");
+                int posicaoEscolhida = lerInteiroEntre(0,40);
+                jogadorAtual.jogar(posicaoEscolhida);
             } else {
-                jogadorAtual.jogar(); // rola dados e move via mover() interno
+                jogadorAtual.jogar();
                 System.out.println("Soma dos dados: " + (jogadorAtual.getDado1() + jogadorAtual.getDado2()));
-                dadosIguaisNestaJogada = jogadorAtual.dadosIguais();
             }
 
             if (jogadorAtual.getPosicao() >= 40) {
                 declararVencedor(jogadorAtual);
                 exibirResultadosFinais();
-                return; // encerra a partida
+                return;
             }
 
-            // aplica o efeito da casa; a própria casa decide se mexe na posição de novo
             Casa casa = tabuleiro.getCasa(jogadorAtual.getPosicao());
             Jogador jogadorAtualizado = casa.executarEfeito(jogadorAtual, jogadores);
             jogadores.set(indiceAtual, jogadorAtualizado);
 
-            // o efeito da casa (ex.: CasaSorte) pode ter empurrado o jogador para >= 40
             if (jogadorAtualizado.getPosicao() >= 40) {
                 declararVencedor(jogadorAtualizado);
                 exibirResultadosFinais();
@@ -179,35 +176,21 @@ public class Jogo {
 
             exibirPosicoes();
 
-            boolean jogaDeNovo = dadosIguaisNestaJogada; // só se aplica ao modo normal
-            if (!jogaDeNovo) {
+            if (this.isModoDebug || !jogadorAtualizado.dadosIguais()) {
                 indiceAtual = proximoIndice(indiceAtual);
             }
         }
     }
-
     private int proximoIndice(int indiceAtual) {
         return (indiceAtual + 1) % jogadores.size();
     }
 
-    private int perguntarPosicaoDebug() {
-        System.out.println("[DEBUG] Digite a casa para onde o jogador deve ir (0 a 40):");
-        return lerInteiroEntre(0, 40);
-    }
-
     private void exibirPosicoes() {
-        StringBuilder sb = new StringBuilder();
         for (Jogador j : jogadores) {
-            sb.append(j.getCor()).append(" na casa ").append(j.getPosicao()).append(", ");
+            System.out.printf("%s na casa %d, ",j.getCor(),j.getPosicao());
         }
-        if (sb.length() >= 2) {
-            sb.setLength(sb.length() - 2);
-        }
-        System.out.println(sb);
+        System.out.println();
     }
-
-    // ---------------- Encerramento ----------------
-
     private void declararVencedor(Jogador jogador) {
         System.out.println("[            PARTIDA ENCERRADA            ]");
         System.out.println("Jogador " + jogador.getCor() + " venceu o jogo!");
@@ -215,14 +198,8 @@ public class Jogo {
 
     private void exibirResultadosFinais() {
         System.out.println("---- Resultado final ----");
-        for (Jogador j : jogadores) {
-            System.out.println(j.getCor()
-                    + " - posição: " + j.getPosicao()
-                    + " - jogadas: " + j.getQuantidadeDeJogadas());
+        for (Jogador j : jogadores){
+            System.out.printf("%s  - Posição: %d Jogadas: %d\n",j.getCor(),j.getPosicao(),j.getQuantidadeDeJogadas());
         }
-    }
-
-    public List<Jogador> getJogadores() {
-        return Collections.unmodifiableList(jogadores);
     }
 }
