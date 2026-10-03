@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane styleClass="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lustozas.controllers.TelaInicialController">
+   <children>
+      <Text layoutX="50.0" layoutY="74.0" styleClass="titulo" strokeType="OUTSIDE" strokeWidth="0.0" text="Jogo Tabuleiro" textAlignment="CENTER" wrappingWidth="500.0">
+         <font><Font size="40.0" /></font>
+      </Text>
+      <Label styleClass="subtitulo" layoutX="64.0" layoutY="136.0" prefHeight="30.0" prefWidth="236.0" text="Escolha o modo de jogo:">
+         <font><Font size="20.0" /></font>
+      </Label>
+      <RadioButton fx:id="radioNormal" layoutX="300.0" layoutY="136.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="108.0" selected="true" text="Normal">
+         <font><Font size="15.0" /></font>
+         <toggleGroup>
+            <ToggleGroup fx:id="grupoModo" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioDebug" layoutX="412.0" layoutY="136.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="119.0" text="Debug" toggleGroup="$grupoModo">
+         <font><Font size="15.0" /></font>
+      </RadioButton>
+      <Label styleClass="subtitulo" layoutX="64.0" layoutY="201.0" prefHeight="30.0" prefWidth="236.0" text="Quantidade de Jogadores:">
+         <font><Font size="20.0" /></font>
+      </Label>
+      <ChoiceBox fx:id="choiceQuantidade" layoutX="307.0" layoutY="201.0" prefHeight="30.0" prefWidth="100.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="2" />
+               <String fx:value="3" />
+               <String fx:value="4" />
+               <String fx:value="5" />
+               <String fx:value="6" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+      <Label fx:id="labelErro" styleClass="label-erro" layoutX="64.0" layoutY="240.0" prefWidth="470.0" text="" visible="false">
+         <font><Font size="14.0" /></font>
+      </Label>
+      <Button styleClass="button-principal" fx:id="botaoAvancar" layoutX="423.0" layoutY="201.0" mnemonicParsing="false" onAction="#aoClicarAvancar" prefHeight="30.0" prefWidth="80.0" text="Avançar">
+         <font><Font size="14.0" /></font>
+      </Button>
+      <Button styleClass="button-sair" fx:id="botaoSair" layoutX="257.0" layoutY="303.0" mnemonicParsing="false" onAction="#aoClicarSair" prefHeight="39.0" prefWidth="87.0" text="Sair" textFill="RED">
+         <font><Font size="18.0" /></font>
+      </Button>
+   </children>
+</AnchorPane>

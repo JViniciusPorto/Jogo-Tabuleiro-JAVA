@@ -1,0 +1,91 @@
+.root {
+    -fx-base: #262b36;
+    -fx-background: #1b1f27;
+    -fx-control-inner-background: #2e333d;
+    -fx-background-color: #1b1f27;
+    -fx-accent: #3949ab;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.titulo {
+    -fx-fill: #f5f5f5;
+    -fx-font-weight: bold;
+}
+
+.subtitulo {
+    -fx-text-fill: #cfd8dc;
+    -fx-font-size: 16px;
+}
+
+.label-destaque {
+    -fx-text-fill: #ffca28;
+    -fx-font-weight: bold;
+}
+
+.label-erro {
+    -fx-text-fill: #ef5350;
+}
+
+.button-principal {
+    -fx-background-color: #3949ab;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: none;
+}
+.button-principal:hover {
+    -fx-background-color: #5c6bc0;
+    -fx-background-insets: 0;
+    -fx-effect: none;
+}
+.button-principal:armed,
+.button-principal:pressed {
+    -fx-background-color: #2c3483;
+    -fx-background-insets: 0;
+    -fx-effect: none;
+}
+
+.button-sair {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ef5350;
+    -fx-border-color: #ef5350;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.painel {
+    -fx-background-color: #262b36;
+    -fx-background-radius: 10;
+}
+
+.casa {
+    -fx-border-color: #454b59;
+    -fx-border-width: 1;
+    -fx-alignment: center;
+}
+.casa-normal       { -fx-background-color: #2e333d; }
+.casa-sorte         { -fx-background-color: #2e7d32; }
+.casa-perde-rodada  { -fx-background-color: #c62828; }
+.casa-surpresa      { -fx-background-color: #6a1b9a; }
+.casa-volta-inicio  { -fx-background-color: #ef6c00; }
+.casa-magica        { -fx-background-color: #1565c0; }
+
+.numero-casa {
+    -fx-text-fill: #90a4ae;
+    -fx-font-size: 10px;
+}
+
+.marcador-jogador {
+    -fx-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.log-partida {
+    -fx-control-inner-background: #11151c;
+    -fx-text-fill: #e0e0e0;
+    -fx-font-family: monospace;
+}
