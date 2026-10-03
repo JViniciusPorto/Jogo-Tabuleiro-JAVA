@@ -1,12 +1,11 @@
 package jogo;
 //importa todas as classes que existem nos pacotes
 import casas.*;
-import jogadores.*;
-import tabuleiro.*;
-
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import jogadores.*;
+import tabuleiro.*;
 
 public class Jogo {
     private List<Jogador> jogadores;
@@ -36,7 +35,7 @@ public class Jogo {
             criarJogadores();
             jogarPartida();
 
-            System.out.println("Voltar para início? [pressione Enter]");
+            System.out.println("\nVoltar para início? [pressione Enter]");
             teclado.nextLine();
 
         }
@@ -56,7 +55,7 @@ public class Jogo {
     }
 
     private void escolherQuantidadeJogadores(){
-        System.out.println("Quantos jogadores vão participar?");
+        System.out.println("\nQuantos jogadores vão participar?");
         this.quantidadeDeJogadores = lerInteiroEntre(2, 6);
     }
 
@@ -94,12 +93,13 @@ public class Jogo {
         List<Integer> tipos = new ArrayList<>();
 
         for (int i = 0; i < quantidade; i++) {
-            System.out.println("Escolha o tipo do jogador [" + CORES_DISPONIVEIS[i] + "]:");
+            System.out.println("\nEscolha o tipo do jogador [" + CORES_DISPONIVEIS[i] + "]:");
             System.out.println("1 - Normal");
             System.out.println("2 - Sortudo");
             System.out.println("3 - Azarado");
             int opcao = lerInteiroEntre(1, 3);
             tipos.add(opcao - 1);
+            teclado.nextLine();//apenas para o primeiro Jogar dados ñ acontecer automaticamente
         }
 
         boolean somenteUmTipo = tipos.stream().distinct().count() == 1;
@@ -117,12 +117,13 @@ public class Jogo {
         //tipos.stream().distinct() retorna só os objetos diferentes
         //tipos.stream().distinct().count() conta quantos objetos são diferentes
         while (tipos.stream().distinct().count() == 1) {
-            System.out.println("Escolha o novo tipo do jogador [" + CORES_DISPONIVEIS[0] + "]:");
+            System.out.println("\nEscolha o novo tipo do jogador [" + CORES_DISPONIVEIS[0] + "]:");
             System.out.println("1 - Normal");
             System.out.println("2 - Sortudo");
             System.out.println("3 - Azarado");
             int opcao = lerInteiroEntre(1, 3);
             tipos.set(0, opcao - 1);
+            teclado.nextLine(); //apenas para o primeiro Jogar dados ñ acontecer automaticamente
         }
     }
 
@@ -192,12 +193,12 @@ public class Jogo {
         System.out.println();
     }
     private void declararVencedor(Jogador jogador) {
-        System.out.println("[            PARTIDA ENCERRADA            ]");
-        System.out.println("Jogador " + jogador.getCor() + " venceu o jogo!");
+        System.out.println("\n[            PARTIDA ENCERRADA            ]");
+        System.out.println("Jogador " + jogador.getCor() + " venceu o jogo!\n");
     }
 
     private void exibirResultadosFinais() {
-        System.out.println("---- Resultado final ----");
+        System.out.println("-------------Resultados Finais------------");
         for (Jogador j : jogadores){
             System.out.printf("%s  - Posição: %d Jogadas: %d\n",j.getCor(),j.getPosicao(),j.getQuantidadeDeJogadas());
         }

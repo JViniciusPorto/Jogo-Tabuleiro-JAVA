@@ -32,7 +32,7 @@ public class CasaVoltaInicio extends Casa {
         int escolha;
 
         do{
-            System.out.print("Digite a posição em que ele está agora: ");
+            System.out.print("\nDigite a posição em que ele está agora: ");
             escolha = scanner.nextInt();
 
              if (escolha < 1 || escolha > todosJogadores.size()) {
