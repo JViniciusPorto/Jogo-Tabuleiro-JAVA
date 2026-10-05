@@ -110,8 +110,16 @@ public class TelaPartidaController {
 
     private void registrarLog(Jogador jogadorQueJogou) {
     StringBuilder log = new StringBuilder();
-    log.append("» ").append(jogadorQueJogou.getCor())
-       .append(" jogou e foi para a casa ")
+    log.append("» ").append(jogadorQueJogou.getCor()).append(" jogou");
+
+    if (!jogo.isModoDebug()) {
+        int dado1 = jogadorQueJogou.getDado1();
+        int dado2 = jogadorQueJogou.getDado2();
+        log.append(" (dados: ").append(dado1).append(" + ").append(dado2)
+           .append(" = ").append(dado1 + dado2).append(")");
+    }
+
+    log.append(" e foi para a casa ")
        .append(jogadorQueJogou.getPosicao())
        .append(".\n");
 
@@ -126,7 +134,7 @@ public class TelaPartidaController {
 
     log.append("――――――――――――――――――\n\n");
     areaLog.appendText(log.toString());
-}
+    }
 
     private void atualizarMarcadoresNoTabuleiro() {
         for (Text marcador : marcadores) {

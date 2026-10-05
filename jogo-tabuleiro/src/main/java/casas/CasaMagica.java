@@ -25,7 +25,6 @@ public class CasaMagica extends Casa {
     }
 
     private Jogador encontrarMaisAtras(List<Jogador> jogadores, Jogador atual){
-
     Jogador maisAtras = atual;
 
     for(Jogador j : jogadores){
